@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useRouteMatch } from "react-router-dom";
 import { Home, About, Projects } from "./Icons";
+import { routesAry } from "./Routes";
 
 const Wrapper = styled.div`
 	width: 80px;
@@ -13,11 +14,18 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 1;
+	.active {
+		background-color: #323030;
+		box-shadow: -14px 10px 10px black;
+	}
+	box-shadow: inset -10px 0px 10px black;
 `;
 
 const Nav = styled.nav`
 	position: relative;
-	height: 26%;
+	width: 100%;
+	height: 60%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -27,7 +35,9 @@ const Nav = styled.nav`
 `;
 
 const LinkA = styled(Link)`
-    position:relative;
+	position:relative;
+	width:100%;
+	height:100%;
     margin-bottom: 10px;
     display:flex;
     justify-content:center;
@@ -50,15 +60,25 @@ const LinkA = styled(Link)`
 
 export default () => {
 	const LinkHandle = ({ to, label, activeExact }) => {
+		const currentScreen = routesAry.indexOf(to);
+
 		let match = useRouteMatch({
 			path: to,
 			exact: activeExact,
 		});
 		return (
-			<LinkA to={to} className={match ? "active" : ""} label={label}>
-				{label === "home" ? <Home size={32} /> : null}
-				{label === "about" ? <About size={32} /> : null}
-				{label === "projects" ? <Projects size={32} /> : null}
+			<LinkA
+				to={{
+					pathname: to,
+					key: routesAry[currentScreen],
+					state: { previousScreen: currentScreen - 1 },
+				}}
+				className={match ? "active" : ""}
+				label={label}
+			>
+				{label === "Home" ? <Home size={32} /> : null}
+				{label === "About" ? <About size={32} /> : null}
+				{label === "Projects" ? <Projects size={32} /> : null}
 			</LinkA>
 		);
 	};
@@ -66,9 +86,9 @@ export default () => {
 	return (
 		<Wrapper>
 			<Nav>
-				<LinkHandle to={"/"} label={"home"} activeExact={true} />
-				<LinkHandle to={"/about"} label={"about"} />
-				<LinkHandle to={"/projects"} label={"projects"} />
+				<LinkHandle to={"/"} label={"Home"} activeExact={true} />
+				<LinkHandle to={"/about"} label={"About"} />
+				<LinkHandle to={"/projects"} label={"Projects"} />
 			</Nav>
 		</Wrapper>
 	);

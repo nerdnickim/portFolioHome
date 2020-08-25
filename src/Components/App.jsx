@@ -3,8 +3,9 @@ import { HashRouter as Router } from "react-router-dom";
 import GlobalStyle from "../Styles/GlobalStyle";
 import styled, { ThemeProvider } from "styled-components";
 import Theme from "../Styles/Theme";
-import Routes from "./Routes";
+
 import Menu from "./Menu";
+import { Routes } from "./Routes";
 
 const Wrapper = styled.div`
 	padding-left: 80px;
