@@ -8,7 +8,7 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
     body{
-        background-color: #323030;
+        background-color: black;
         color: white;
         font-size: 16px;
     }

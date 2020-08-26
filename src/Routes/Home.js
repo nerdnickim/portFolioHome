@@ -12,8 +12,7 @@ const Wrapper = styled.div`
 
 const FontContains = styled.div`
 	position: absolute;
-	top: 0;
-	left: -100%;
+	left: -120px;
 	display: flex;
 	width: 100%;
 	align-items: center;
@@ -34,20 +33,6 @@ const ImageSection = styled.div`
 	margin-right: 80px;
 `;
 
-const ImageTitle = styled.div`
-	width: 100%;
-	padding: 10px 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-bottom: 2px solid #c8c0c0;
-`;
-
-const Title = styled.h1`
-	font-size: 3rem;
-	letter-spacing: 2px;
-`;
-
 const ImageContain = styled.div`
 	width: 100%;
 `;
@@ -60,6 +45,7 @@ const Ul = styled.ul`
 
 const Li = styled.li`
 	position: relative;
+	font-size: 3.2rem;
 	color: #323030;
 	text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff,
 		1px 1px 0 #ffffff;
@@ -82,12 +68,6 @@ export default () => {
 						<Span>developer</Span>
 					</Li>
 					<Li>
-						<Span>aboutme</Span>
-					</Li>
-					<Li>
-						<Span>projects</Span>
-					</Li>
-					<Li>
 						<Span>everyday</Span>
 					</Li>
 					<Li>
@@ -103,9 +83,6 @@ export default () => {
 			</FontContains>
 			<Dummy></Dummy>
 			<ImageSection>
-				<ImageTitle>
-					<Title>NERDNICK</Title>
-				</ImageTitle>
 				<ImageContain>
 					<Image src={mainImage} />
 				</ImageContain>

@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 	justify-content: center;
 	z-index: 1;
 	.active {
-		background-color: #323030;
+		background-color: black;
 		box-shadow: -14px 10px 10px black;
 	}
 	box-shadow: inset -10px 0px 10px black;
@@ -31,6 +31,9 @@ const Nav = styled.nav`
 	justify-content: space-between;
 	.active {
 		fill: ${(props) => props.theme.pointBlue};
+	}
+	.off {
+		fill: white;
 	}
 `;
 
@@ -74,12 +77,12 @@ export default () => {
 					key: routesAry[currentScreen],
 					state: { previousScreen: currentScreen - 1 },
 				}}
-				className={match ? "active" : ""}
+				className={match ? "active" : "off"}
 				label={label}
 			>
-				{label === "Home" ? <Home size={32} /> : null}
-				{label === "About" ? <About size={32} /> : null}
-				{label === "Projects" ? <Projects size={32} /> : null}
+				{label === "Home" ? <Home size={32} color={"white"} /> : null}
+				{label === "About" ? <About size={32} color={"white"} /> : null}
+				{label === "Projects" ? <Projects size={32} color={"white"} /> : null}
 			</LinkA>
 		);
 	};

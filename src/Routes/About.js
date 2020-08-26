@@ -50,7 +50,7 @@ const LP = styled.ul`
 	justify-content: center;
 	background-color: #323030;
 	overflow: hidden;
-
+	box-shadow: 9px 9px 18px 8px black;
 	text-transform: uppercase;
 	z-index: 1;
 	&:before {
@@ -90,14 +90,17 @@ const LPPart = styled.li`
 	&:first-child {
 		transform: rotate(0deg) skewY(30deg);
 		background: #4a4646;
+		box-shadow: inset -3px -6px 10px 0px black;
 	}
 	&:nth-child(2) {
 		transform: rotate(120deg) skewY(30deg);
 		background: #918989;
+		box-shadow: inset -3px -6px 10px 0px black;
 	}
 	&:nth-child(3) {
 		transform: rotate(240deg) skewY(30deg);
 		background: #736c6c;
+		box-shadow: inset -3px -6px 10px 0px black;
 	}
 `;
 
