@@ -15,7 +15,7 @@ export default createGlobalStyle`
     
     a{
         text-decoration: none;
-        color:black;
+        color:white;
         outline: none;
     }
     input:focus{

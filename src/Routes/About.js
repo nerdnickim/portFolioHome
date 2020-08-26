@@ -1,6 +1,10 @@
 import React, { useState, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { PlayBtn, ForwardBtn, PauseBtn } from "../Components/Icons";
+import { Switch, Route, Link } from "react-router-dom";
+import Profile from "./About/Profile";
+import Skills from "./About/Skills";
+import Oneday from "./About/Oneday";
 
 const spin = keyframes`
 	100%{
@@ -158,13 +162,19 @@ export default () => {
 			<Record>
 				<LP className={state === false ? "active" : ""} ref={lpRef}>
 					<LPPart>
-						<Span>profile</Span>
+						<Link to="/about/profile">
+							<Span>profile</Span>
+						</Link>
 					</LPPart>
 					<LPPart>
-						<Span>skills</Span>
+						<Link to="/about/skills">
+							<Span>skills</Span>
+						</Link>
 					</LPPart>
 					<LPPart>
-						<Span>one day</Span>
+						<Link to="/about/oneday">
+							<Span>one day</Span>
+						</Link>
 					</LPPart>
 					<PointCirlce />
 				</LP>
@@ -178,6 +188,11 @@ export default () => {
 					</Button>
 				</BtnContains>
 			</Record>
+			<Switch>
+				<Route path="/about/oneday" children={Oneday} />
+				<Route path="/about/profile" children={Profile} />
+				<Route path="/about/skills" children={Skills} />
+			</Switch>
 		</Wrapper>
 	);
 };

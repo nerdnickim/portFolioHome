@@ -56,6 +56,7 @@ const LinkA = styled(Link)`
         }
 	}
 	transition: all 0.4s ease-out;
+	
 `;
 
 export default () => {

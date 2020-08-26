@@ -1,13 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { mainImage } from "../Contains";
+import Image from "../Components/Image";
 
 const Wrapper = styled.div`
 	position: relative;
-	height: 100%;
 	display: flex;
+	height: 100%;
+	align-items: center;
 `;
 
 const FontContains = styled.div`
+	position: absolute;
+	top: 0;
+	left: -100%;
 	display: flex;
 	width: 100%;
 	align-items: center;
@@ -19,11 +25,31 @@ const Dummy = styled.div`
 `;
 
 const ImageSection = styled.div`
-	position: absolute;
-	top: 0;
-	left: 0;
 	width: 100%;
-	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	margin-right: 80px;
+`;
+
+const ImageTitle = styled.div`
+	width: 100%;
+	padding: 10px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 2px solid #c8c0c0;
+`;
+
+const Title = styled.h1`
+	font-size: 3rem;
+	letter-spacing: 2px;
+`;
+
+const ImageContain = styled.div`
+	width: 100%;
 `;
 
 const Ul = styled.ul`
@@ -76,7 +102,14 @@ export default () => {
 				</Ul>
 			</FontContains>
 			<Dummy></Dummy>
-			<ImageSection />
+			<ImageSection>
+				<ImageTitle>
+					<Title>NERDNICK</Title>
+				</ImageTitle>
+				<ImageContain>
+					<Image src={mainImage} />
+				</ImageContain>
+			</ImageSection>
 		</Wrapper>
 	);
 };
