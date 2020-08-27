@@ -4,7 +4,7 @@ import { PlayBtn, PauseBtn } from "../Components/Icons";
 import { Switch, Route, Link } from "react-router-dom";
 import Profile from "./About/Profile";
 import Skills from "./About/Skills";
-import Oneday from "./About/Oneday";
+import Favorite from "./About/Favorite";
 
 const spin = keyframes`
 	100%{
@@ -340,7 +340,7 @@ export default () => {
 				<StickPoint className="fourth" />
 			</Record>
 			<Switch>
-				<Route path="/about/favorite" children={Oneday} />
+				<Route path="/about/favorite" children={Favorite} />
 				<Route path="/about/profile" children={Profile} />
 				<Route path="/about/skills" children={Skills} />
 			</Switch>
