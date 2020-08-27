@@ -24,7 +24,7 @@ const Record = styled.div`
 	position: relative;
 	min-width: 65%;
 	height: 80%;
-	border: 1px solid #c8c0c0;
+	background-color: #2c2c2c;
 	border-radius: 20px;
 	display: flex;
 	align-items: center;
@@ -32,6 +32,26 @@ const Record = styled.div`
 
 	.active {
 		animation: ${spin} 8s linear infinite;
+	}
+
+	.first {
+		top: 10px;
+		left: 10px;
+	}
+
+	.second {
+		top: 10px;
+		right: 10px;
+	}
+
+	.third {
+		bottom: 10px;
+		left: 10px;
+	}
+
+	.fourth {
+		bottom: 10px;
+		right: 10px;
 	}
 `;
 
@@ -48,7 +68,7 @@ const LP = styled.ul`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #323030;
+	background-color: black;
 	overflow: hidden;
 	box-shadow: 9px 9px 18px 8px black;
 	text-transform: uppercase;
@@ -89,18 +109,12 @@ const LPPart = styled.li`
 	transform-origin: 0% 100%;
 	&:first-child {
 		transform: rotate(0deg) skewY(30deg);
-		background: #4a4646;
-		box-shadow: inset -3px -6px 10px 0px black;
 	}
 	&:nth-child(2) {
 		transform: rotate(120deg) skewY(30deg);
-		background: #918989;
-		box-shadow: inset -3px -6px 10px 0px black;
 	}
 	&:nth-child(3) {
 		transform: rotate(240deg) skewY(30deg);
-		background: #736c6c;
-		box-shadow: inset -3px -6px 10px 0px black;
 	}
 `;
 
@@ -110,9 +124,19 @@ const PointCirlce = styled.div`
 	width: 100%;
 	max-height: 80px;
 	height: 100%;
+	border: 3px solid #c8c0c0;
+	border-radius: 50%;
+	background-color: black;
+`;
+
+const PointRound = styled.div`
+	position: absolute;
+	max-width: 200px;
+	width: 100%;
+	max-height: 200px;
+	height: 100%;
 	border: 1px solid #c8c0c0;
 	border-radius: 50%;
-	background-color: #323030;
 `;
 
 const Circle = styled.div`
@@ -125,11 +149,78 @@ const Circle = styled.div`
 	height: 100%;
 	border: 1px solid #c8c0c0;
 	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+const CircleRound = styled.div`
+	position: relative;
+	max-width: 80px;
+	width: 100%;
+	max-height: 80px;
+	height: 100%;
+	border: 3px solid #c8c0c0;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+`;
+
+const CircleRoundIn = styled.div`
+	position: relative;
+	max-width: 30px;
+	width: 100%;
+	max-height: 30px;
+	height: 100%;
+	border: 1px solid #c8c0c0;
+	border-radius: 50%;
+	display: flex;
+	background-color: #2c2c2c;
+	z-index: 11;
+	justify-content: center;
+	align-items: center;
+`;
+
+const StickPoint = styled.div`
+	position: absolute;
+	max-width: 15px;
+	width: 100%;
+	max-height: 15px;
+	height: 100%;
+	border: 1px solid #c8c0c0;
+	border-radius: 50%;
+	background-color: black;
+`;
+
+const Stick = styled.div`
+	position: absolute;
+	top: 10px;
+
+	width: 10px;
+	height: 390px;
+	background: black;
+	transform: rotate(30deg);
+	transform-origin: top;
+	display: flex;
+	justify-content: center;
+	border: 2px solid white;
+`;
+
+const Rectangle = styled.div`
+	position: absolute;
+	top: 360px;
+	width: 20px;
+	height: 50px;
+	background: black;
+	border-radius: 6px;
+	border: 3px solid white;
 `;
 
 const Span = styled.span`
-	margin-right: 40px;
-	transform: skewY(-30deg) rotate(150deg);
+	margin-left: 50px;
+
 	letter-spacing: 2px;
 	font-size: 2rem;
 `;
@@ -150,6 +241,10 @@ const Button = styled.button`
 	}
 `;
 
+const LinkS = styled(Link)`
+	transform: skewY(-30deg) rotate(180deg);
+`;
+
 export default () => {
 	const [state, setState] = useState(false);
 	const lpRef = useRef(null);
@@ -165,31 +260,45 @@ export default () => {
 			<Record>
 				<LP className={state === false ? "active" : ""} ref={lpRef}>
 					<LPPart>
-						<Link to="/about/profile">
+						<LinkS to="/about/profile">
 							<Span>profile</Span>
-						</Link>
+						</LinkS>
 					</LPPart>
 					<LPPart>
-						<Link to="/about/skills">
+						<LinkS to="/about/skills">
 							<Span>skills</Span>
-						</Link>
+						</LinkS>
 					</LPPart>
 					<LPPart>
-						<Link to="/about/oneday">
+						<LinkS to="/about/oneday">
 							<Span>one day</Span>
-						</Link>
+						</LinkS>
 					</LPPart>
 					<PointCirlce />
+					<PointRound />
 				</LP>
-				<Circle></Circle>
+				<Circle>
+					<CircleRound>
+						<CircleRoundIn>
+							<Stick>
+								<Rectangle />
+							</Stick>
+							<StickPoint />
+						</CircleRoundIn>
+					</CircleRound>
+				</Circle>
 				<BtnContains>
 					<Button onClick={playHandle}>
-						{state ? <PauseBtn size={36} /> : <PlayBtn size={36} />}
+						{state ? <PauseBtn size={48} /> : <PlayBtn size={48} />}
 					</Button>
 					<Button>
-						<ForwardBtn size={36} />
+						<ForwardBtn size={48} />
 					</Button>
 				</BtnContains>
+				<StickPoint className="first" />
+				<StickPoint className="second" />
+				<StickPoint className="third" />
+				<StickPoint className="fourth" />
 			</Record>
 			<Switch>
 				<Route path="/about/oneday" children={Oneday} />
