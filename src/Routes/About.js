@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { PlayBtn, ForwardBtn, PauseBtn } from "../Components/Icons";
+import { PlayBtn, PauseBtn } from "../Components/Icons";
 import { Switch, Route, Link } from "react-router-dom";
 import Profile from "./About/Profile";
 import Skills from "./About/Skills";
