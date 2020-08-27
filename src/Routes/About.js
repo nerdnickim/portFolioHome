@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { PlayBtn, ForwardBtn, PauseBtn } from "../Components/Icons";
 import { Switch, Route, Link } from "react-router-dom";
@@ -201,11 +201,12 @@ const Stick = styled.div`
 	width: 10px;
 	height: 390px;
 	background: black;
-	transform: rotate(30deg);
 	transform-origin: top;
 	display: flex;
 	justify-content: center;
 	border: 2px solid white;
+
+	transition: transform 1.45s cubic-bezier(0.51, 0, 0.46, 1);
 `;
 
 const Rectangle = styled.div`
@@ -248,29 +249,62 @@ const LinkS = styled(Link)`
 export default () => {
 	const [state, setState] = useState(false);
 	const lpRef = useRef(null);
+	const stickRef = useRef(null);
 
 	const playHandle = (e) => {
 		e.persist();
 		e.preventDefault();
-		console.dir(lpRef.current);
+		setState((p) => !p);
+		if (state === false) {
+			lpRef.current.style.animationPlayState = "paused";
+		} else {
+			lpRef.current.style.animationPlayState = "running";
+		}
 	};
+
+	const pausedHandle = (e) => {
+		e.persist();
+		e.preventDefault();
+		if (state === false) {
+			lpRef.current.style.animationPlayState = "paused";
+			setState((p) => !p);
+		}
+	};
+
+	const runningHandle = (e) => {
+		e.persist();
+		e.preventDefault();
+		if (state === true) {
+			lpRef.current.style.animationPlayState = "running";
+			setState((p) => !p);
+		}
+	};
+
+	useEffect(() => {
+		setTimeout(() => {
+			stickRef.current.style.transform = `rotate(30deg)`;
+			setTimeout(() => {
+				lpRef.current.classList.add("active");
+			}, 1900);
+		}, 450);
+	});
 
 	return (
 		<Wrapper>
 			<Record>
-				<LP className={state === false ? "active" : ""} ref={lpRef}>
+				<LP ref={lpRef} onMouseOut={runningHandle}>
 					<LPPart>
-						<LinkS to="/about/profile">
+						<LinkS to="/about/profile" onMouseOver={pausedHandle}>
 							<Span>profile</Span>
 						</LinkS>
 					</LPPart>
 					<LPPart>
-						<LinkS to="/about/skills">
+						<LinkS to="/about/skills" onMouseOver={pausedHandle}>
 							<Span>skills</Span>
 						</LinkS>
 					</LPPart>
 					<LPPart>
-						<LinkS to="/about/oneday">
+						<LinkS to="/about/oneday" onMouseOver={pausedHandle}>
 							<Span>one day</Span>
 						</LinkS>
 					</LPPart>
@@ -280,7 +314,7 @@ export default () => {
 				<Circle>
 					<CircleRound>
 						<CircleRoundIn>
-							<Stick>
+							<Stick ref={stickRef}>
 								<Rectangle />
 							</Stick>
 							<StickPoint />
@@ -290,9 +324,6 @@ export default () => {
 				<BtnContains>
 					<Button onClick={playHandle}>
 						{state ? <PauseBtn size={48} /> : <PlayBtn size={48} />}
-					</Button>
-					<Button>
-						<ForwardBtn size={48} />
 					</Button>
 				</BtnContains>
 				<StickPoint className="first" />
