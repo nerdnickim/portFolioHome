@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useRouteMatch } from "react-router-dom";
 import { Home, About, Projects } from "./Icons";
-import { routesAry } from "./Routes";
 
 const Wrapper = styled.div`
 	width: 80px;
@@ -64,8 +63,6 @@ const LinkA = styled(Link)`
 
 export default () => {
 	const LinkHandle = ({ to, label, activeExact }) => {
-		const currentScreen = routesAry.indexOf(to);
-
 		let match = useRouteMatch({
 			path: to,
 			exact: activeExact,
@@ -74,8 +71,6 @@ export default () => {
 			<LinkA
 				to={{
 					pathname: to,
-					key: routesAry[currentScreen],
-					state: { previousScreen: currentScreen - 1 },
 				}}
 				className={match ? "active" : "off"}
 				label={label}

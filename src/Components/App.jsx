@@ -9,6 +9,7 @@ import { Routes } from "./Routes";
 
 const Wrapper = styled.div`
 	padding-left: 80px;
+	height: 100vh;
 `;
 
 function App() {

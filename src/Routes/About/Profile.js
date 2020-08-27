@@ -50,6 +50,10 @@ const Container = styled.div`
 const Left = styled.div`
 	line-height: 1.3;
 	width: 100%;
+	letter-spacing: 1.6px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 `;
 
 const Right = styled.div`
@@ -133,7 +137,6 @@ export default withRouter(({ history }) => {
 						<Name>KIM EUI KYO</Name>
 						<Spann>1993.09.17</Spann>
 						<Spann>Developer</Spann>
-						<Spann>Favorite</Spann>
 					</Left>
 					<Right>
 						<ClipContain>

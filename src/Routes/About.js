@@ -282,10 +282,18 @@ export default () => {
 
 	useEffect(() => {
 		setTimeout(() => {
-			stickRef.current.style.transform = `rotate(30deg)`;
-			setTimeout(() => {
-				lpRef.current.classList.add("active");
-			}, 1900);
+			if (stickRef.current === null) {
+				return;
+			} else {
+				stickRef.current.style.transform = `rotate(30deg)`;
+				setTimeout(() => {
+					if (lpRef.current === null) {
+						return;
+					} else {
+						lpRef.current.classList.add("active");
+					}
+				}, 1900);
+			}
 		}, 450);
 	});
 
@@ -304,8 +312,8 @@ export default () => {
 						</LinkS>
 					</LPPart>
 					<LPPart>
-						<LinkS to="/about/oneday" onMouseOver={pausedHandle}>
-							<Span>one day</Span>
+						<LinkS to="/about/favorite" onMouseOver={pausedHandle}>
+							<Span>Favorite</Span>
 						</LinkS>
 					</LPPart>
 					<PointCirlce />
@@ -332,7 +340,7 @@ export default () => {
 				<StickPoint className="fourth" />
 			</Record>
 			<Switch>
-				<Route path="/about/oneday" children={Oneday} />
+				<Route path="/about/favorite" children={Oneday} />
 				<Route path="/about/profile" children={Profile} />
 				<Route path="/about/skills" children={Skills} />
 			</Switch>
